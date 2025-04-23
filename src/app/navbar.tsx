@@ -19,6 +19,13 @@ const Navbar = () => {
               Home
             </li>
           </Link>
+          <Link href="/dashboard">
+            <li
+              className={`${pathname === "/" ? "text-blue-300" : "text-white"}`}
+            >
+              Dashboard
+            </li>
+          </Link>
           <Link href="/product">
             <li
               className={`${
