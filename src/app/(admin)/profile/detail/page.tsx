@@ -1,20 +1,19 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React from "react";
 
-const ProfilePage = () => {
+const DetailProfile = () => {
   const router = useRouter();
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="h-screen flex items-center justify-center">
       <span
         className="px-4 py-1 bg-gray-300 rounded-sm cursor-pointer"
-        onClick={() => router.push("/profile/detail")}
+        onClick={() => router.push("/profile")}
       >
-        porfil
+        detail porfil
       </span>
     </div>
   );
 };
 
-export default ProfilePage;
+export default DetailProfile;
