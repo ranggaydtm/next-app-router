@@ -12,14 +12,14 @@ export default async function ProductPage(props: ProductProps) {
   const products = await getData("http://localhost:3000/api/product");
 
   return (
-    <div className="grid grid-cols-5 place-items-center mt-5">
+    <div className="grid grid-cols-3 place-items-center mt-5">
       {/* <h1>{params.slug ? "Detail Product Page" : "Product Page"}</h1> */}
       {products.data.length > 0 &&
         products.data.map((product: any) => (
           <Link
             href={`/product/detail/${product.id}`}
             key={product.id}
-            className="w-72 max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 my-2"
+            className="w-[450px] bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 my-2"
           >
             <img
               className="p-8 rounded-t-lg object-cover h-96 w-full"
@@ -28,7 +28,7 @@ export default async function ProductPage(props: ProductProps) {
             />
             <div className="px-5 pb-5">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate">
-                {product.title}
+                {product.name}
               </h5>
               <div className="flex items-center justify-between mt-3">
                 <span className="text-3xl font-bold text-gray-900 dark:text-white">
