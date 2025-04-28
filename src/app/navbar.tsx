@@ -2,11 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const router = useRouter();
+  const { status }: { status: string } = useSession();
+
   return (
     <nav className="flex items-center justify-between bg-gray-800 px-5 py-4">
       <div className="flex gap-4">
@@ -21,7 +23,9 @@ const Navbar = () => {
           </Link>
           <Link href="/dashboard">
             <li
-              className={`${pathname === "/" ? "text-blue-300" : "text-white"}`}
+              className={`${
+                pathname === "/dashboard" ? "text-blue-300" : "text-white"
+              }`}
             >
               Dashboard
             </li>
@@ -56,12 +60,21 @@ const Navbar = () => {
         </ul>
       </div>
       <div>
-        <button
-          className="px-4 py-1 bg-white rounded-sm cursor-pointer"
-          onClick={() => router.push("/login")}
-        >
-          Login
-        </button>
+        {status === "authenticated" ? (
+          <button
+            className="px-4 py-1 bg-white rounded-sm cursor-pointer"
+            onClick={() => signOut()}
+          >
+            Logout
+          </button>
+        ) : (
+          <button
+            className="px-4 py-1 bg-white rounded-sm cursor-pointer"
+            onClick={() => signIn()}
+          >
+            Login
+          </button>
+        )}
       </div>
     </nav>
   );
